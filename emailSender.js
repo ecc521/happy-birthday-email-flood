@@ -11,7 +11,7 @@ function sendEmail() {
   var newAge = Number(age.toString(base)) //Convert age specified base
   for (var i=1;i<=newAge;i++) {
     //TODO: Use nth st, and rd when correct, instead of using th.
-    MailApp.sendEmail(receiverEmail, "Happy Birthday!!!", "Happy " + age + " th Birthday! \nIt shall be celebrated by sending you your age in base " + base + " emails (unless Google stops me early)!!!\nMessage " + i + " of " + newAge + "\n\n" + senderName)
+    MailApp.sendEmail(receiverEmail, "Happy Birthday" + newAge + "!!!", "Happy " + age + " th Birthday! \nIt shall be celebrated by sending you your age in base " + base + " emails (unless Google stops me early)!!!\nMessage " + i + " of " + newAge + "\n\n" + senderName)
     Logger.log(i + " emails sent")
   }
   Logger.log("Remaining Quota: " + MailApp.getRemainingDailyQuota())
