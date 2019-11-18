@@ -1,3 +1,4 @@
+//Send a user happy birthday emails.
 function sendEmail() {
   Logger.log("Quota: " + MailApp.getRemainingDailyQuota())
   
@@ -15,4 +16,23 @@ function sendEmail() {
     Logger.log(i + " emails sent")
   }
   Logger.log("Remaining Quota: " + MailApp.getRemainingDailyQuota())
+}
+
+
+//Getting around email quotas by sharing a document.
+function emailer() {
+  var address = "" //Email to send messages to.
+  var emailCount = 50 //Number of emails to send
+  
+  var start = Date.now()
+  var file = DriveApp.createFile("Happy Birthday!", "Happy Birthday!", "text/plain")
+  Logger.log("Created File")
+  Logger.log("Sending emails to " + address)
+  for (var i=0;i<emailCount;i++) {
+    file.addViewer(address)
+    Logger.log((i+1) + " emails sent. " + ((Date.now() - start)/1000) + " seconds elapsed. ")
+    file.removeViewer(address)
+  }
+  file.setTrashed(true)
+  Logger.log("Deleted File")
 }
